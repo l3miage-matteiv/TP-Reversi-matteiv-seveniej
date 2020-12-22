@@ -104,9 +104,9 @@ describe("Instanciation d'un ReversiModel", () => {
         const B = M.getBoard();
         expect(B).withContext("L'attribut board devrait être initialisé, or il est undefined").toBeDefined();
         if (B) {
-            expect(B.length).withContext("Le plateau devrait contenir 8 colonnes").toEqual(8);
+            expect(B.length).withContext("Le plateau devrait contenir 8 lignes").toEqual(8);
             B.forEach(
-                (l, i) => expect(l.length).withContext(`La colonne ${i} devrait contenir 8 lignes`).toEqual(8)
+                (l, i) => expect(l.length).withContext(`La ligne ${i} devrait contenir 8 colonne`).toEqual(8)
             );
             const BOK: Board_RO = placeToken( initEmpty(), [[3,4], [4,3]], [[3,3], [4,4]]);
             const L = differencesBoards(BOK, B);

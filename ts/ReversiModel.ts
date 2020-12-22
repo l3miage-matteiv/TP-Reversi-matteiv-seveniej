@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 // import { map } from 'rxjs/operators';
-import {Board, Turn, ReversiModelInterface, C, TileCoords, Board_RO, GameState} from "./ReversiDefinitions";
+import {Board, Turn, ReversiModelInterface, C, TileCoords, Board_RO, GameState, PlayImpact} from "./ReversiDefinitions";
 
 export class ReversiModel implements ReversiModelInterface {
     protected board: Board;
@@ -16,7 +16,8 @@ export class ReversiModel implements ReversiModelInterface {
     initBoard(): void {
     }
 
-    PionsTakenIfPlayAt(x: number, y: number): TileCoords[] {
+    PionsTakenIfPlayAt(x: number, y: number): PlayImpact {
+        // Parcourir les 8 directions pour accumuler les coordonnées de pions prenables
         return [];
     }
 

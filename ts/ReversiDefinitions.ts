@@ -18,7 +18,7 @@ export interface GameState {                              // Un état de jeu
 }
 
 export interface ReversiModelInterface {                  // Le modèle du jeu Reversi, au sens MVP/MVC
-    PionsTakenIfPlayAt(x: number, y: number): PlayImpact; // Les pions pris à l'adversaire
+    PionsTakenIfPlayAt(x: number, y: number): PlayImpact; // La liste des coordonnées des pions pris à l'adversaire
     play(i: number, j: number): void;                     // Joueur courant joue en <i, j>
 
     gameStateObs: Observable<GameState>;                  // Un observable de l'état courant du jeu
