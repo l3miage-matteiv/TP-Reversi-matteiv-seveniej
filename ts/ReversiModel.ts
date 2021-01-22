@@ -14,10 +14,27 @@ export class ReversiModel implements ReversiModelInterface {
     }
 
     initBoard(): void {
+        // Remplir tous les lignes avec 'empty'
+        const B = [];                       // [L[],L[]]
+        for(let i = 0; i < 8; i++) {
+            const L : C[] = [];             // [C['Empty'|Turn],...,C['Empty'|Turn]] 
+            for(let j = 0; j < 8; j++) {
+                L.push('Empty');
+            }
+            B.push(L);
+        }
+        this.board = B as Board;
+
+        this.board[3][3] = this.board[4][4] = 'Player2';
+        this.board[3][4] = this.board[4][3] = 'Player1';
+
+        this.currentTurn = 'Player1';
+
     }
 
     PionsTakenIfPlayAt(x: number, y: number): PlayImpact {
         // Parcourir les 8 directions pour accumuler les coordonnées de pions prenables
+
         return [];
     }
 
