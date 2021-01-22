@@ -23,7 +23,7 @@ function BoardtoString(b: Board_RO): string {
 	return b.map( LtoString ).join("\n");
 }
 
-m.gameStateObs.subscribe( ({turn, board}) => {
+m.gameStateObs?.subscribe( ({turn, board}) => {
 	console.log( "_______________________" );
 	console.log( BoardtoString(board) );
 	console.log( "Player", cToString(turn), "can play at:" );

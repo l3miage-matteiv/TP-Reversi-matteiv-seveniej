@@ -9,7 +9,7 @@ function cToString(c: C): string {
 	}
 }
 function LtoString(L: R): string {
-	return L.reduce((acc, c) => `${acc}${cToString(c)}`, '');
+	return L.reduce((acc, c, i) => `${i}${acc}${cToString(c)}`, '');
 }
 function BoardtoString(b: Board_RO): string {
 	return b.map( LtoString ).join("\n");
