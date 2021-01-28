@@ -44,12 +44,115 @@ export class ReversiModel implements ReversiModelInterface {
 
     PionsTakenIfPlayAt(x: number, y: number): PlayImpact {
         // Parcourir les 8 directions pour accumuler les coordonnées de pions prenables
-        // Cherche que les cases dans une des directions contiennent n pions de l'autre joueur et aussi qu'il rencontre un pion a lui a la fin
 
-        // Commencer par parcourir une direction
-        // 
-        return [];
+        var H : TileCoords[] = [];
+        var P : PlayImpact = [];
+        
+        // On commence par parcourir une direction
+        // Direction: Haut
+        var i = y;
+        if(y>0) i = y - 1;  // i Prend la prochaine case en haut
+        // On verifie bien que la prochaine case a un pion enemie
+        // On continue dans la direction jusqu'a trouver une case 'Empty', un pion a nous ou atteindre la fin de la table
+        while(i > 0 && this.board[x][i] !== this.currentTurn && this.board[x][i] !== "Empty") {
+            H.push([x,i-1]);
+            console.log("Haut: " + this.board[x][i]);
+            i--;
+        }
+        console.log("Haut: " + this.board[x][i]);
+        // Si on trouve un pion a nous on accumule les coordonnees parcourues
+        if(this.board[x][i] === this.currentTurn) {
+            P = [...P, ...H];
+        }
+
+        // Direction: Haut Droite
+        H = [];
+        i = y - 1;
+        var j = x + 1;
+        while((i > 0 && j < 7) && (this.board[j][i] !== this.currentTurn)) {
+            H.push([j,i]);
+            i--;
+            j++;
+        }
+        if(this.board[j][i] === this.currentTurn) {
+            P = [...P, ...H];
+        }
+
+        // Direction: Droite
+        H = [];
+        j = x + 1;
+        while(j < 7 && (this.board[j][y] !== this.currentTurn)) {
+            H.push([j,y]);
+            j++;
+        }
+        if(this.board[j][y] === this.currentTurn) {
+            P = [...P, ...H];
+        }
+
+        // Direction: Bas Droite
+        H = [];
+        i = y + 1;
+        j = x + 1;
+        while((i < 7 && j < 7) && (this.board[j][i] !== this.currentTurn)) {
+            H.push([j,i]);
+            i++;
+            j++;
+        }
+        if(this.board[j][i] === this.currentTurn) {
+            P = [...P, ...H];
+        }
+
+        // Direction: Bas
+        H = [];
+        i = y + 1;
+        while((i < 7) && (this.board[x][i] !== this.currentTurn)) {
+            H.push([x,i]);
+            i++;
+        }
+        if(this.board[x][i] === this.currentTurn) {
+            P = [...P, ...H];
+        }
+
+        // Direction: Bas Gauche
+        H = [];
+        i = y + 1;
+        j = x - 1;
+        while((i < 7 && j > 0) && (this.board[j][i] !== this.currentTurn)) {
+            H.push([j,i]);
+            i++;
+            j--;
+        }
+        if(this.board[j][i] === this.currentTurn) {
+            P = [...P, ...H];
+        }
+
+        // Direction: Gauche
+        H = [];
+        j = x - 1;
+        while((j > 0) && (this.board[j][y] !== this.currentTurn)) {
+            H.push([j,y]);
+            j--;
+        }
+        if(this.board[j][y] === this.currentTurn) {
+            P = [...P, ...H];
+        }
+
+        // Direction: Haut Gauche
+        H = [];
+        i = y - 1;
+        j = x - 1;
+        while((i > 0 && j > 0) && (this.board[j][i] !== this.currentTurn)) {
+            H.push([j,i]);
+            i--;
+            j--;
+        }
+        if(this.board[j][i] === this.currentTurn) {
+            P = [...P, ...H];
+        }
+        return P;
     }
+
+    
 
     play(i: number, j: number): void {
         // Vérifier que le coup est valide.
